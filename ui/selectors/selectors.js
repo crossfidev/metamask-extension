@@ -2486,6 +2486,15 @@ export function getMetaMetricsDataDeletionDate(state) {
 export function getMetaMetricsDataDeletionStatus(state) {
   return state.metamask.metaMetricsDataDeletionStatus;
 }
+
+export function isMetaMetricsDataDeletionMarked(state) {
+  return state.appState.metaMetricsDataDeletionMarked;
+}
+
+export function hasRecordedMetricsSinceDeletion(state) {
+  return state.appState.hasRecordedMetricsSinceDeletion;
+}
+
 ///: BEGIN:ONLY_INCLUDE_IF(desktop)
 /**
  * To get the `desktopEnabled` value which determines whether we use the desktop app
