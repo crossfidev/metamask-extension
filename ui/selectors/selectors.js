@@ -2496,7 +2496,7 @@ export function isMetaMetricsDataDeletionMarked(state) {
 }
 
 export function hasRecordedMetricsSinceDeletion(state) {
-  return state.appState.hasRecordedMetricsSinceDeletion;
+  return state.metamask.hasMetaMetricsDataRecorded;
 }
 
 ///: BEGIN:ONLY_INCLUDE_IF(desktop)

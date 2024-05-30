@@ -32,7 +32,6 @@ import {
   getPetnamesEnabled,
 } from '../../../selectors';
 import {
-  continueRecordingMetaMetricsData,
   openBasicFunctionalityModal,
   unMarkingMetaMetricsDataDeletion,
 } from '../../../ducks/app/app';
@@ -132,9 +131,6 @@ const mapDispatchToProps = (dispatch) => {
     },
     unMarkingMetaMetricsDataDeletion: () => {
       return dispatch(unMarkingMetaMetricsDataDeletion());
-    },
-    continueRecordingMetaMetricsData: () => {
-      return dispatch(continueRecordingMetaMetricsData());
     },
     ///: BEGIN:ONLY_INCLUDE_IF(blockaid)
     setSecurityAlertsEnabled: (value) => setSecurityAlertsEnabled(value),
