@@ -117,6 +117,9 @@ export const SENTRY_BACKGROUND_STATE = {
     trezorModel: true,
     usedNetworks: true,
   },
+  BridgeController: {
+    bridgeState: {},
+  },
   CronjobController: {
     jobs: false,
   },
