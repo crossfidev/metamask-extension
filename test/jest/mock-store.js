@@ -106,6 +106,12 @@ export const createGetSmartTransactionFeesApiResponse = () => {
   };
 };
 
+export const createBridgeMockStore = () => {
+  return {
+    toChain: null,
+  };
+};
+
 export const createSwapsMockStore = () => {
   return {
     confirmTransaction: {
