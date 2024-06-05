@@ -1,5 +1,6 @@
 import { CHAIN_IDS } from './network';
 
+// TODO read from feature flags
 export const ALLOWED_BRIDGE_CHAIN_IDS = [
   CHAIN_IDS.MAINNET,
   CHAIN_IDS.BSC,
@@ -11,3 +12,6 @@ export const ALLOWED_BRIDGE_CHAIN_IDS = [
   CHAIN_IDS.LINEA_MAINNET,
   CHAIN_IDS.BASE,
 ];
+
+// TODO update
+export const BRIDGE_API_BASE_URL = 'http://localhost:4000';

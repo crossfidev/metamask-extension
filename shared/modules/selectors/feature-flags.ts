@@ -1,3 +1,4 @@
+import { BridgeFeatureFlags } from '../../../app/scripts/controllers/bridge';
 import { getCurrentChainId } from '../../../ui/selectors/selectors'; // TODO: Migrate shared selectors to this file.
 import { getNetworkNameByChainId } from '../feature-flags';
 
@@ -16,8 +17,15 @@ type FeatureFlagsMetaMaskState = {
         };
       };
     };
+    bridgeState: {
+      bridgeFeatureFlags: BridgeFeatureFlags;
+    };
   };
 };
+
+export function getBridgeFeatureFlags(state: FeatureFlagsMetaMaskState) {
+  return state.metamask.bridgeState?.bridgeFeatureFlags;
+}
 
 export function getFeatureFlagsByChainId(state: FeatureFlagsMetaMaskState) {
   const chainId = getCurrentChainId(state);

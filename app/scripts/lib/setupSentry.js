@@ -118,7 +118,12 @@ export const SENTRY_BACKGROUND_STATE = {
     usedNetworks: true,
   },
   BridgeController: {
-    bridgeState: {},
+    bridgeState: {
+      bridgeFeatureFlags: {
+        // TODO remove dash
+        'extension-support': false,
+      },
+    },
   },
   CronjobController: {
     jobs: false,

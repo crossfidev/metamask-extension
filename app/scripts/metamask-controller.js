@@ -3592,6 +3592,10 @@ export default class MetamaskController extends EventEmitter {
       setSwapsQuotesPollingLimitEnabled:
         swapsController.setSwapsQuotesPollingLimitEnabled.bind(swapsController),
 
+      // Bridge
+      setBridgeFeatureFlags:
+        bridgeController.setBridgeFeatureFlags.bind(bridgeController),
+
       // Smart Transactions
       fetchSmartTransactionFees: smartTransactionsController.getFees.bind(
         smartTransactionsController,
