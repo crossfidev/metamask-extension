@@ -6,6 +6,7 @@ import fetchWithCache from '../../../shared/lib/fetch-with-cache';
 const CLIENT_ID_HEADER = { 'X-Client-Id': SWAPS_CLIENT_ID };
 
 // TODO validate responses
+// TODO write tests
 
 export async function fetchBridgeFeatureFlags(): Promise<BridgeFeatureFlags> {
   return await fetchWithCache({

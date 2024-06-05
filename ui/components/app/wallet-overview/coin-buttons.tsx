@@ -56,6 +56,7 @@ import IconButton from '../../ui/icon-button';
 ///: BEGIN:ONLY_INCLUDE_IF(build-main,build-beta,build-flask)
 import { getPortfolioUrl } from '../../../helpers/utils/portfolio';
 import useRamps from '../../../hooks/experiences/useRamps';
+import useBridging from '../../../hooks/experiences/useBridging';
 ///: END:ONLY_INCLUDE_IF
 
 const CoinButtons = ({
@@ -187,6 +188,8 @@ const CoinButtons = ({
 
   ///: BEGIN:ONLY_INCLUDE_IF(build-main,build-beta,build-flask)
   const { openBuyCryptoInPdapp } = useRamps();
+
+  const { openBridgeExperience } = useBridging();
   ///: END:ONLY_INCLUDE_IF
 
   const handleSendOnClick = useCallback(async () => {
@@ -261,28 +264,11 @@ const CoinButtons = ({
   }, [chainId, defaultSwapsToken]);
 
   const handleBridgeOnClick = useCallback(() => {
-    if (isBridgeChain) {
-      const portfolioUrl = getPortfolioUrl(
-        'bridge',
-        'ext_bridge_button',
-        metaMetricsId,
-      );
-      global.platform.openTab({
-        url: `${portfolioUrl}${
-          location.pathname.includes('asset') ? '&token=native' : ''
-        }`,
-      });
-      trackEvent({
-        category: MetaMetricsEventCategory.Navigation,
-        event: MetaMetricsEventName.BridgeLinkClicked,
-        properties: {
-          location: 'Home',
-          text: 'Bridge',
-          chain_id: chainId,
-          token_symbol: 'ETH',
-        },
-      });
-    }
+    openBridgeExperience(
+      'Home',
+      defaultSwapsToken,
+      location.pathname.includes('asset') ? '&token=native' : '',
+    );
   }, [isBridgeChain, chainId, metaMetricsId]);
 
   const handlePortfolioOnClick = useCallback(() => {

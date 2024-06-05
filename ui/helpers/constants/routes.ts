@@ -56,6 +56,7 @@ const NOTIFICATIONS_ROUTE = '/notifications';
 const NOTIFICATIONS_SETTINGS_ROUTE = '/notifications/settings';
 const CONNECTED_ROUTE = '/connected';
 const CONNECTED_ACCOUNTS_ROUTE = '/connected/accounts';
+const CROSS_CHAIN_SWAP_ROUTE = '/cross-chain';
 const SWAPS_ROUTE = '/swaps';
 const PREPARE_SWAP_ROUTE = '/swaps/prepare-swap-page';
 const SWAPS_NOTIFICATION_ROUTE = '/swaps/notification-page';
@@ -273,6 +274,7 @@ export {
   SNAPS_ROUTE,
   SNAPS_VIEW_ROUTE,
   ///: END:ONLY_INCLUDE_IF
+  CROSS_CHAIN_SWAP_ROUTE,
   CONNECTED_ROUTE,
   CONNECTED_ACCOUNTS_ROUTE,
   PATH_NAME_MAP,
