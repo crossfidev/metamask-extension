@@ -194,18 +194,27 @@ registerInPageContentScript();
  * folder for more details.
  */
 async function createOffscreen() {
-  if (!chrome.offscreen || (await chrome.offscreen.hasDocument())) {
+  if (!chrome.offscreen) {
     return;
   }
-
-  await chrome.offscreen.createDocument({
-    url: './offscreen.html',
-    reasons: ['IFRAME_SCRIPTING'],
-    justification:
-      'Used for Hardware Wallet and Snaps scripts to communicate with the extension.',
-  });
-
-  console.debug('Offscreen iframe loaded');
+  try {
+    await chrome.offscreen.createDocument({
+      url: './offscreen.html',
+      reasons: ['IFRAME_SCRIPTING'],
+      justification:
+        'Used for Hardware Wallet and Snaps scripts to communicate with the extension.',
+    });
+    console.debug('Offscreen iframe loaded');
+  } catch (error) {
+    if (
+      !error?.message?.startsWith(
+        'Only a single offscreen document may be created',
+      )
+    ) {
+      throw error;
+    }
+    console.debug('Offscreen document already exists; skipping creation');
+  }
 }
 
 createOffscreen();
