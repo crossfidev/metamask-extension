@@ -27,6 +27,13 @@ export const RestrictedMethods = Object.freeze({
 export const ConnectionPermission = Object.freeze({
   connection_permission: 'connection_permission',
 });
+
+// This configuration specifies permission weight thresholds used to determine which
+// permissions to show or hide on certain Snap-related flows (Install, Update, etc.)
+export const PermissionWeightThreshold = Object.freeze({
+  snapInstall: 3 as const,
+  snapUpdateApprovedPermissions: 2 as const,
+});
 ///: END:ONLY_INCLUDE_IF
 
 ///: BEGIN:ONLY_INCLUDE_IF(snaps)

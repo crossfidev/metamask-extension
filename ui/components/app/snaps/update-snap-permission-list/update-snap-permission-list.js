@@ -1,16 +1,18 @@
-import React from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
-import { getWeightedPermissions } from '../../../../helpers/utils/permission';
 import { useI18nContext } from '../../../../hooks/useI18nContext';
-import { Box } from '../../../component-library';
+import { Box, ButtonLink } from '../../../component-library';
 import {
   getMultipleTargetsSubjectMetadata,
   getSnapMetadata,
-  getSnapsMetadata,
 } from '../../../../selectors';
-import { getSnapName } from '../../../../helpers/utils/util';
-import SnapPermissionCell from '../snap-permission-cell';
+import SnapPermissionAdapter from '../snap-permission-adapter';
+import {
+  Display,
+  JustifyContent,
+} from '../../../../helpers/constants/design-system';
+import { PermissionWeightThreshold } from '../../../../../shared/constants/permissions';
 
 export default function UpdateSnapPermissionList({
   approvedPermissions,
@@ -36,13 +38,12 @@ export default function UpdateSnapPermissionList({
     }),
   );
 
-  const snapsMetadata = useSelector(getSnapsMetadata);
-  const snapsNameGetter = getSnapName(snapsMetadata);
-
-  const approvedPermissionsToShow = {
-    ...approvedPermissions,
-    connection_permission: approvedConnections ?? {},
-  };
+  const approvedPermissionsToShow = useMemo(() => {
+    return {
+      ...approvedPermissions,
+      connection_permission: approvedConnections ?? {},
+    };
+  }, [approvedPermissions, approvedConnections]);
 
   const revokedPermissionsToShow = {
     ...revokedPermissions,
@@ -54,58 +55,81 @@ export default function UpdateSnapPermissionList({
     connection_permission: newConnections ?? {},
   };
 
+  const [showAll, setShowAll] = useState(false);
+
+  const [approvedPermissionsToDisplay, setApprovedPermissionsToDisplay] =
+    useState([]);
+
+  const showAllPermissions = () => {
+    setShowAll(true);
+  };
+
+  useEffect(() => {
+    if (showAll) {
+      setApprovedPermissionsToDisplay(
+        <SnapPermissionAdapter
+          permissions={approvedPermissionsToShow}
+          snapId={snapId}
+          snapName={snapName}
+          targetSubjectsMetadata={targetSubjectsMetadata}
+          weightThreshold={Infinity}
+          approved
+        />,
+      );
+    } else {
+      setApprovedPermissionsToDisplay(
+        <SnapPermissionAdapter
+          permissions={approvedPermissionsToShow}
+          snapId={snapId}
+          snapName={snapName}
+          targetSubjectsMetadata={targetSubjectsMetadata}
+          weightThreshold={
+            PermissionWeightThreshold.snapUpdateApprovedPermissions
+          }
+          approved
+        />,
+      );
+    }
+  }, [
+    showAll,
+    setApprovedPermissionsToDisplay,
+    approvedPermissionsToShow,
+    snapId,
+    snapName,
+    targetSubjectsMetadata,
+  ]);
+
   return (
     <Box>
-      {getWeightedPermissions({
-        t,
-        permissions: newPermissionsToShow,
-        subjectName: snapName,
-        getSubjectName: snapsNameGetter,
-      }).map((permission, index) => (
-        <SnapPermissionCell
-          snapId={snapId}
-          connectionSubjectMetadata={
-            targetSubjectsMetadata[permission.connection]
-          }
-          permission={permission}
-          index={index}
-          key={`permissionCellDisplay_${snapId}_${index}`}
-        />
-      ))}
-      {getWeightedPermissions({
-        t,
-        permissions: revokedPermissionsToShow,
-        subjectName: snapName,
-        getSubjectName: snapsNameGetter,
-      }).map((permission, index) => (
-        <SnapPermissionCell
-          snapId={snapId}
-          connectionSubjectMetadata={
-            targetSubjectsMetadata[permission.connection]
-          }
-          permission={permission}
-          index={index}
-          key={`permissionCellDisplay_${snapId}_${index}`}
-          revoked
-        />
-      ))}
-      {getWeightedPermissions({
-        t,
-        permissions: approvedPermissionsToShow,
-        subjectName: snapName,
-        getSubjectName: snapsNameGetter,
-      }).map((permission, index) => (
-        <SnapPermissionCell
-          snapId={snapId}
-          connectionSubjectMetadata={
-            targetSubjectsMetadata[permission.connection]
-          }
-          permission={permission}
-          index={index}
-          key={`permissionCellDisplay_${snapId}_${index}`}
-          approved
-        />
-      ))}
+      <SnapPermissionAdapter
+        permissions={newPermissionsToShow}
+        snapId={snapId}
+        snapName={snapName}
+        targetSubjectsMetadata={targetSubjectsMetadata}
+        weightThreshold={Infinity}
+      />
+      <SnapPermissionAdapter
+        permissions={revokedPermissionsToShow}
+        snapId={snapId}
+        snapName={snapName}
+        targetSubjectsMetadata={targetSubjectsMetadata}
+        weightThreshold={Infinity}
+        revoked
+      />
+      <Box className="snap-permissions-list">
+        {approvedPermissionsToDisplay}
+      </Box>
+      {showAll ? null : (
+        <Box
+          display={Display.Flex}
+          justifyContent={JustifyContent.center}
+          paddingBottom={2}
+        >
+          <ButtonLink onClick={() => showAllPermissions()}>
+            {t('seeAllPermissions')}
+          </ButtonLink>
+        </Box>
+      )}
     </Box>
   );
 }

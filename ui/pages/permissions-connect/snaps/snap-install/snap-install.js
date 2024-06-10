@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { PageContainerFooter } from '../../../../components/ui/page-container';
 import { useI18nContext } from '../../../../hooks/useI18nContext';
@@ -50,6 +50,14 @@ export default function SnapInstall({
 
   const { isScrollable, isScrolledToBottom, scrollToBottom, ref, onScroll } =
     useScrollRequired([requestState]);
+
+  const [hasScrolledToBottomOnce, setHasScrolledToBottomOnce] = useState(false);
+
+  useEffect(() => {
+    if (isScrolledToBottom && !hasScrolledToBottomOnce) {
+      setHasScrolledToBottomOnce(true);
+    }
+  }, [isScrolledToBottom, hasScrolledToBottomOnce]);
 
   const onCancel = useCallback(
     () => rejectSnapInstall(request.metadata.id),
@@ -189,8 +197,9 @@ export default function SnapInstall({
                 connections={requestState.connections || {}}
               />
             </Box>
-            {isScrollable && !isScrolledToBottom ? (
-              <Box className="snap-install__scroll-button-area">
+
+            <Box className="snap-install__scroll-button-area">
+              {isScrollable && !hasScrolledToBottomOnce ? (
                 <AvatarIcon
                   className="snap-install__scroll-button"
                   data-testid="snap-install-scroll"
@@ -200,8 +209,8 @@ export default function SnapInstall({
                   onClick={scrollToBottom}
                   style={{ cursor: 'pointer' }}
                 />
-              </Box>
-            ) : null}
+              ) : null}
+            </Box>
           </>
         )}
       </Box>
@@ -216,7 +225,7 @@ export default function SnapInstall({
           cancelButtonType="default"
           hideCancel={hasError}
           disabled={
-            isLoading || (!hasError && isScrollable && !isScrolledToBottom)
+            isLoading || (!hasError && isScrollable && !hasScrolledToBottomOnce)
           }
           onCancel={onCancel}
           cancelText={t('cancel')}
