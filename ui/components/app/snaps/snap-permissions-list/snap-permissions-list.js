@@ -23,6 +23,7 @@ export default function SnapPermissionsList({
   permissions,
   connections,
   showOptions,
+  turnOffAbstraction,
 }) {
   const t = useI18nContext();
 
@@ -52,6 +53,10 @@ export default function SnapPermissionsList({
         getSubjectName: getSnapName(snapsMetadata),
       });
       setWeightedPermissions(finalPermissions);
+    }
+
+    if (turnOffAbstraction) {
+      setShowAll(true);
     }
 
     if (Object.keys(finalPermissions).length <= 3 && !showAll) {
@@ -126,4 +131,5 @@ SnapPermissionsList.propTypes = {
   permissions: PropTypes.object.isRequired,
   connections: PropTypes.object,
   showOptions: PropTypes.bool,
+  turnOffAbstraction: PropTypes.bool,
 };
