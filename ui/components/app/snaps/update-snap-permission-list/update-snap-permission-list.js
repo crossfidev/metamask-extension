@@ -6,6 +6,7 @@ import { Box, ButtonLink } from '../../../component-library';
 import {
   getMultipleTargetsSubjectMetadata,
   getSnapMetadata,
+  getSnapsMetadata,
 } from '../../../../selectors';
 import SnapPermissionAdapter from '../snap-permission-adapter';
 import {
@@ -13,6 +14,8 @@ import {
   JustifyContent,
 } from '../../../../helpers/constants/design-system';
 import { PermissionWeightThreshold } from '../../../../../shared/constants/permissions';
+import { getSnapName } from '../../../../helpers/utils/util';
+import { getWeightedPermissions } from '../../../../helpers/utils/permission';
 
 export default function UpdateSnapPermissionList({
   approvedPermissions,
@@ -37,6 +40,8 @@ export default function UpdateSnapPermissionList({
       ...revokedConnections,
     }),
   );
+
+  const snapsMetadata = useSelector(getSnapsMetadata);
 
   const approvedPermissionsToShow = useMemo(() => {
     return {
@@ -64,11 +69,39 @@ export default function UpdateSnapPermissionList({
     setShowAll(true);
   };
 
+  const newWeightedPermissions = getWeightedPermissions({
+    t,
+    permissions: newPermissionsToShow,
+    subjectName: snapName,
+    getSubjectName: getSnapName(snapsMetadata),
+  });
+
+  const revokedWeightedPermissions = getWeightedPermissions({
+    t,
+    permissions: revokedPermissionsToShow,
+    subjectName: snapName,
+    getSubjectName: getSnapName(snapsMetadata),
+  });
+
+  const approvedWeightedPermissions = useMemo(() => {
+    return getWeightedPermissions({
+      t,
+      permissions: approvedPermissionsToShow,
+      subjectName: snapName,
+      getSubjectName: getSnapName(snapsMetadata),
+    });
+  }, [t, approvedPermissionsToShow, snapName, snapsMetadata]);
+
   useEffect(() => {
+    // If there are no approved permissions to show, then hide "See all" button-link
+    if (Object.keys(approvedWeightedPermissions).length < 1 && !showAll) {
+      setShowAll(true);
+    }
+
     if (showAll) {
       setApprovedPermissionsToDisplay(
         <SnapPermissionAdapter
-          permissions={approvedPermissionsToShow}
+          permissions={approvedWeightedPermissions}
           snapId={snapId}
           snapName={snapName}
           targetSubjectsMetadata={targetSubjectsMetadata}
@@ -79,7 +112,7 @@ export default function UpdateSnapPermissionList({
     } else {
       setApprovedPermissionsToDisplay(
         <SnapPermissionAdapter
-          permissions={approvedPermissionsToShow}
+          permissions={approvedWeightedPermissions}
           snapId={snapId}
           snapName={snapName}
           targetSubjectsMetadata={targetSubjectsMetadata}
@@ -93,7 +126,7 @@ export default function UpdateSnapPermissionList({
   }, [
     showAll,
     setApprovedPermissionsToDisplay,
-    approvedPermissionsToShow,
+    approvedWeightedPermissions,
     snapId,
     snapName,
     targetSubjectsMetadata,
@@ -102,14 +135,14 @@ export default function UpdateSnapPermissionList({
   return (
     <Box>
       <SnapPermissionAdapter
-        permissions={newPermissionsToShow}
+        permissions={newWeightedPermissions}
         snapId={snapId}
         snapName={snapName}
         targetSubjectsMetadata={targetSubjectsMetadata}
         weightThreshold={Infinity}
       />
       <SnapPermissionAdapter
-        permissions={revokedPermissionsToShow}
+        permissions={revokedWeightedPermissions}
         snapId={snapId}
         snapName={snapName}
         targetSubjectsMetadata={targetSubjectsMetadata}
@@ -123,6 +156,7 @@ export default function UpdateSnapPermissionList({
         <Box
           display={Display.Flex}
           justifyContent={JustifyContent.center}
+          paddingTop={2}
           paddingBottom={2}
         >
           <ButtonLink onClick={() => showAllPermissions()}>

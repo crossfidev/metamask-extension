@@ -1,15 +1,9 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
-import { getWeightedPermissions } from '../../../../helpers/utils/permission';
-import { getSnapName } from '../../../../helpers/utils/util';
 import SnapPermissionCell from '../snap-permission-cell';
-import { useI18nContext } from '../../../../hooks/useI18nContext';
-import { getSnapsMetadata } from '../../../../selectors';
 
 export default function SnapPermissionAdapter({
   snapId,
-  snapName,
   permissions,
   showOptions,
   targetSubjectsMetadata,
@@ -17,15 +11,7 @@ export default function SnapPermissionAdapter({
   revoked,
   approved,
 }) {
-  const t = useI18nContext();
-  const snapsMetadata = useSelector(getSnapsMetadata);
-
-  return getWeightedPermissions({
-    t,
-    permissions,
-    subjectName: snapName,
-    getSubjectName: getSnapName(snapsMetadata),
-  })
+  return permissions
     .filter((permission) => permission.weight <= weightThreshold ?? Infinity)
     .map((permission, index) => (
       <SnapPermissionCell
