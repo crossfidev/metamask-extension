@@ -32,7 +32,7 @@ export default function SnapPermissionAdapter({
 SnapPermissionAdapter.propTypes = {
   snapId: PropTypes.string.isRequired,
   snapName: PropTypes.string.isRequired,
-  permissions: PropTypes.object.isRequired,
+  permissions: PropTypes.array.isRequired,
   showOptions: PropTypes.bool,
   targetSubjectsMetadata: PropTypes.object,
   weightThreshold: PropTypes.number,

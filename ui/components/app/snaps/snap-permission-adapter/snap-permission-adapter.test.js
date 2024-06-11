@@ -8,22 +8,6 @@ import SnapPermissionAdapter from './snap-permission-adapter';
 describe('Snap Permission List', () => {
   const mockSnapId = 'mock-snap-id';
   const mockSnapName = 'Snap Name';
-  const mockPermissionData = {
-    snap_dialog: {
-      caveats: null,
-      date: 1680709920602,
-      id: '4dduR1BpsmS0ZJfeVtiAh',
-      invoker: 'local:http://localhost:8080',
-      parentCapability: 'snap_dialog',
-    },
-    'endowment:network-access': {
-      caveats: null,
-      date: null,
-      id: '5dduR1BpsmS0ZJfeVtiAh',
-      invoker: 'local:http://localhost:8080',
-      parentCapability: 'endowment:network-access',
-    },
-  };
   const mockTargetSubjectMetadata = {
     extensionId: null,
     iconUrl: null,
@@ -53,15 +37,42 @@ describe('Snap Permission List', () => {
       },
     },
   };
+  const mockWeightedPermissions = [
+    {
+      leftIcon: 'hierarchy',
+      weight: 3,
+      label: 'Allow websites to communicate directly with Dialog Example Snap.',
+      description: {},
+      permissionName: 'endowment:rpc',
+      permissionValue: {
+        caveats: [
+          {
+            type: 'rpcOrigin',
+            value: {
+              dapps: true,
+            },
+          },
+        ],
+      },
+    },
+    {
+      label: 'Display dialog windows in MetaMask.',
+      description: {},
+      leftIcon: 'messages',
+      weight: 4,
+      permissionName: 'snap_dialog',
+      permissionValue: {},
+    },
+  ];
 
   const store = configureStore(mockState);
 
-  it('renders only permissions with weight less than 3', () => {
+  it('renders only permissions with weight less than or equal to 3', () => {
     renderWithProvider(
       <SnapPermissionAdapter
         snapId={mockSnapId}
         snapName={mockSnapName}
-        permissions={mockPermissionData}
+        permissions={mockWeightedPermissions}
         targetSubjectsMetadata={{ ...mockTargetSubjectMetadata }}
         weightThreshold={PermissionWeightThreshold.snapInstall}
       />,
@@ -71,9 +82,10 @@ describe('Snap Permission List', () => {
       screen.queryByText('Display dialog windows in MetaMask.'),
     ).not.toBeInTheDocument();
     expect(
-      screen.queryByText('Approved on 2023-04-05'),
-    ).not.toBeInTheDocument();
-    expect(screen.queryByText('Access the internet.')).toBeInTheDocument();
+      screen.queryByText(
+        'Allow websites to communicate directly with Dialog Example Snap.',
+      ),
+    ).toBeInTheDocument();
     expect(screen.queryByText('Requested now')).toBeInTheDocument();
   });
 });
