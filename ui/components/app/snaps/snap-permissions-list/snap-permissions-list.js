@@ -55,7 +55,7 @@ export default function SnapPermissionsList({
       setWeightedPermissions(finalPermissions);
     }
 
-    if (turnOffAbstraction) {
+    if (turnOffAbstraction && !showAll) {
       setShowAll(true);
     }
 
@@ -100,6 +100,7 @@ export default function SnapPermissionsList({
     snapsMetadata,
     permissions,
     connections,
+    turnOffAbstraction,
   ]);
 
   const showAllPermissions = () => {
