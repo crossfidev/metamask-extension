@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import React, { useCallback, useState, useEffect } from 'react';
+import React, { useCallback, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { PageContainerFooter } from '../../../../components/ui/page-container';
 import { useI18nContext } from '../../../../hooks/useI18nContext';
@@ -48,28 +48,8 @@ export default function SnapInstall({
   const [isShowingWarning, setIsShowingWarning] = useState(false);
   const snapsMetadata = useSelector(getSnapsMetadata);
 
-  const {
-    isScrollable,
-    isScrolledToBottom,
-    hasScrolledToBottom,
-    scrollToBottom,
-    ref,
-    onScroll,
-  } = useScrollRequired([requestState]);
-
-  const [hasScrolledToBottomOnce, setHasScrolledToBottomOnce] = useState(false);
-
-  useEffect(() => {
-    if (isScrollable && isScrolledToBottom && !hasScrolledToBottomOnce) {
-      setHasScrolledToBottomOnce(true);
-    }
-  }, [
-    setHasScrolledToBottomOnce,
-    hasScrolledToBottomOnce,
-    isScrollable,
-    isScrolledToBottom,
-    hasScrolledToBottom,
-  ]);
+  const { isScrollable, hasScrolledToBottom, scrollToBottom, ref, onScroll } =
+    useScrollRequired([requestState]);
 
   const onCancel = useCallback(
     () => rejectSnapInstall(request.metadata.id),
@@ -211,7 +191,7 @@ export default function SnapInstall({
             </Box>
 
             <Box className="snap-install__scroll-button-area">
-              {isScrollable && !hasScrolledToBottomOnce ? (
+              {isScrollable && !hasScrolledToBottom ? (
                 <AvatarIcon
                   className="snap-install__scroll-button"
                   data-testid="snap-install-scroll"
@@ -237,7 +217,7 @@ export default function SnapInstall({
           cancelButtonType="default"
           hideCancel={hasError}
           disabled={
-            isLoading || (!hasError && isScrollable && !hasScrolledToBottomOnce)
+            isLoading || (!hasError && isScrollable && !hasScrolledToBottom)
           }
           onCancel={onCancel}
           cancelText={t('cancel')}
