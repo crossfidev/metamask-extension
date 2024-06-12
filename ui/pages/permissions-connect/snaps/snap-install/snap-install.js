@@ -48,16 +48,28 @@ export default function SnapInstall({
   const [isShowingWarning, setIsShowingWarning] = useState(false);
   const snapsMetadata = useSelector(getSnapsMetadata);
 
-  const { isScrollable, isScrolledToBottom, scrollToBottom, ref, onScroll } =
-    useScrollRequired([requestState]);
+  const {
+    isScrollable,
+    isScrolledToBottom,
+    hasScrolledToBottom,
+    scrollToBottom,
+    ref,
+    onScroll,
+  } = useScrollRequired([requestState]);
 
   const [hasScrolledToBottomOnce, setHasScrolledToBottomOnce] = useState(false);
 
   useEffect(() => {
-    if (isScrolledToBottom && !hasScrolledToBottomOnce) {
+    if (isScrollable && isScrolledToBottom && !hasScrolledToBottomOnce) {
       setHasScrolledToBottomOnce(true);
     }
-  }, [isScrolledToBottom, hasScrolledToBottomOnce]);
+  }, [
+    setHasScrolledToBottomOnce,
+    hasScrolledToBottomOnce,
+    isScrollable,
+    isScrolledToBottom,
+    hasScrolledToBottom,
+  ]);
 
   const onCancel = useCallback(
     () => rejectSnapInstall(request.metadata.id),
