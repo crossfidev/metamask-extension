@@ -1951,9 +1951,7 @@
               {
                 "type": "rpcOrigin",
                 "value": {
-                  "allowedOrigins": [
-                    "npm:@metamask/json-rpc-example-snap"
-                  ],
+                  "allowedOrigins": ["npm:@metamask/json-rpc-example-snap"],
                   "dapps": true
                 }
               }
