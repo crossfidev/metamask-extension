@@ -27,7 +27,7 @@ export default function SnapPermissionsList({
 }) {
   const t = useI18nContext();
 
-  const permissionsToShow = useMemo(() => {
+  const combinedPermissions = useMemo(() => {
     return { ...permissions, connection_permission: connections ?? {} };
   }, [permissions, connections]);
 
@@ -48,7 +48,7 @@ export default function SnapPermissionsList({
     if (Object.keys(finalPermissions).length === 0) {
       finalPermissions = getWeightedPermissions({
         t,
-        permissions: permissionsToShow,
+        permissions: combinedPermissions,
         subjectName: snapName,
         getSubjectName: getSnapName(snapsMetadata),
       });
@@ -95,7 +95,7 @@ export default function SnapPermissionsList({
     snapName,
     targetSubjectsMetadata,
     showOptions,
-    permissionsToShow,
+    combinedPermissions,
     t,
     snapsMetadata,
     permissions,

@@ -43,19 +43,19 @@ export default function UpdateSnapPermissionList({
 
   const snapsMetadata = useSelector(getSnapsMetadata);
 
-  const approvedPermissionsToShow = useMemo(() => {
+  const approvedCombinedPermissions = useMemo(() => {
     return {
       ...approvedPermissions,
       connection_permission: approvedConnections ?? {},
     };
   }, [approvedPermissions, approvedConnections]);
 
-  const revokedPermissionsToShow = {
+  const revokedCombinedPermissions = {
     ...revokedPermissions,
     connection_permission: revokedConnections ?? {},
   };
 
-  const newPermissionsToShow = {
+  const newCombinedPermissions = {
     ...newPermissions,
     connection_permission: newConnections ?? {},
   };
@@ -71,14 +71,14 @@ export default function UpdateSnapPermissionList({
 
   const newWeightedPermissions = getWeightedPermissions({
     t,
-    permissions: newPermissionsToShow,
+    permissions: newCombinedPermissions,
     subjectName: snapName,
     getSubjectName: getSnapName(snapsMetadata),
   });
 
   const revokedWeightedPermissions = getWeightedPermissions({
     t,
-    permissions: revokedPermissionsToShow,
+    permissions: revokedCombinedPermissions,
     subjectName: snapName,
     getSubjectName: getSnapName(snapsMetadata),
   });
@@ -86,11 +86,11 @@ export default function UpdateSnapPermissionList({
   const approvedWeightedPermissions = useMemo(() => {
     return getWeightedPermissions({
       t,
-      permissions: approvedPermissionsToShow,
+      permissions: approvedCombinedPermissions,
       subjectName: snapName,
       getSubjectName: getSnapName(snapsMetadata),
     });
-  }, [t, approvedPermissionsToShow, snapName, snapsMetadata]);
+  }, [t, approvedCombinedPermissions, snapName, snapsMetadata]);
 
   useEffect(() => {
     // If there are no approved permissions to show, then hide "See all" button-link
