@@ -25,6 +25,7 @@ export default function UpdateSnapPermissionList({
   revokedConnections,
   newConnections,
   targetSubjectMetadata,
+  showAllPermissions,
 }) {
   const t = useI18nContext();
   const snapId = targetSubjectMetadata.origin;
@@ -64,10 +65,6 @@ export default function UpdateSnapPermissionList({
 
   const [approvedPermissionsToDisplay, setApprovedPermissionsToDisplay] =
     useState([]);
-
-  const showAllPermissions = () => {
-    setShowAll(true);
-  };
 
   const newWeightedPermissions = getWeightedPermissions({
     t,
@@ -132,6 +129,11 @@ export default function UpdateSnapPermissionList({
     targetSubjectsMetadata,
   ]);
 
+  const onShowAllPermissions = () => {
+    showAllPermissions();
+    setShowAll(true);
+  };
+
   return (
     <Box>
       <SnapPermissionAdapter
@@ -159,7 +161,7 @@ export default function UpdateSnapPermissionList({
           paddingTop={2}
           paddingBottom={2}
         >
-          <ButtonLink onClick={() => showAllPermissions()}>
+          <ButtonLink onClick={() => onShowAllPermissions()}>
             {t('seeAllPermissions')}
           </ButtonLink>
         </Box>
@@ -193,5 +195,9 @@ UpdateSnapPermissionList.propTypes = {
    * New pre-approved connections that are being requested
    */
   newConnections: PropTypes.object.isRequired,
+  /**
+   * Callback function used to handle revealing all permissions action in UI.
+   */
+  showAllPermissions: PropTypes.func.isRequired,
   targetSubjectMetadata: PropTypes.object.isRequired,
 };

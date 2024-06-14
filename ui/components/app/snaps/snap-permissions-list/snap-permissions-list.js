@@ -24,6 +24,7 @@ export default function SnapPermissionsList({
   connections,
   showOptions,
   turnOffAbstraction,
+  showAllPermissions,
 }) {
   const t = useI18nContext();
 
@@ -103,7 +104,8 @@ export default function SnapPermissionsList({
     turnOffAbstraction,
   ]);
 
-  const showAllPermissions = () => {
+  const onShowAllPermissions = () => {
+    showAllPermissions();
     setShowAll(true);
   };
 
@@ -117,7 +119,7 @@ export default function SnapPermissionsList({
           paddingTop={2}
           paddingBottom={2}
         >
-          <ButtonLink onClick={() => showAllPermissions()}>
+          <ButtonLink onClick={() => onShowAllPermissions()}>
             {t('seeAllPermissions')}
           </ButtonLink>
         </Box>
@@ -133,4 +135,5 @@ SnapPermissionsList.propTypes = {
   connections: PropTypes.object,
   showOptions: PropTypes.bool,
   turnOffAbstraction: PropTypes.bool,
+  showAllPermissions: PropTypes.func.isRequired,
 };

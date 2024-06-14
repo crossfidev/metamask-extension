@@ -45,6 +45,8 @@ export default function SnapUpdate({
 
   const [isShowingWarning, setIsShowingWarning] = useState(false);
 
+  const [showAllPermissions, setShowAllPermissions] = useState(false);
+
   const { isScrollable, hasScrolledToBottom, scrollToBottom, ref, onScroll } =
     useScrollRequired([requestState]);
   const snapsMetadata = useSelector(getSnapsMetadata);
@@ -91,6 +93,10 @@ export default function SnapUpdate({
     } else {
       onSubmit();
     }
+  };
+
+  const onShowAllPermissions = () => {
+    setShowAllPermissions(true);
   };
 
   return (
@@ -193,9 +199,10 @@ export default function SnapUpdate({
                 revokedConnections={revokedConnections}
                 newConnections={newConnections}
                 targetSubjectMetadata={targetSubjectMetadata}
+                showAllPermissions={onShowAllPermissions}
               />
             </Box>
-            {isScrollable && !hasScrolledToBottom ? (
+            {isScrollable && !hasScrolledToBottom && !showAllPermissions ? (
               <Box className="snap-update__scroll-button-area">
                 <AvatarIcon
                   className="snap-install__scroll-button"
@@ -222,7 +229,11 @@ export default function SnapUpdate({
           cancelButtonType="default"
           hideCancel={hasError}
           disabled={
-            isLoading || (!hasError && isScrollable && !hasScrolledToBottom)
+            isLoading ||
+            (!hasError &&
+              isScrollable &&
+              !hasScrolledToBottom &&
+              !showAllPermissions)
           }
           onCancel={onCancel}
           cancelText={t('cancel')}

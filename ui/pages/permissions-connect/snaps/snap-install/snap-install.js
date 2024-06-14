@@ -47,6 +47,7 @@ export default function SnapInstall({
   const { origin, iconUrl } = siteMetadata;
   const [isShowingWarning, setIsShowingWarning] = useState(false);
   const snapsMetadata = useSelector(getSnapsMetadata);
+  const [showAllPermissions, setShowAllPermissions] = useState(false);
 
   const { isScrollable, hasScrolledToBottom, scrollToBottom, ref, onScroll } =
     useScrollRequired([requestState]);
@@ -94,6 +95,10 @@ export default function SnapInstall({
       return 'connect';
     }
     return 'confirm';
+  };
+
+  const onShowAllPermissions = () => {
+    setShowAllPermissions(true);
   };
 
   return (
@@ -187,11 +192,12 @@ export default function SnapInstall({
                 snapName={snapName}
                 permissions={requestState.permissions || {}}
                 connections={requestState.connections || {}}
+                showAllPermissions={onShowAllPermissions}
               />
             </Box>
 
             <Box className="snap-install__scroll-button-area">
-              {isScrollable && !hasScrolledToBottom ? (
+              {isScrollable && !hasScrolledToBottom && !showAllPermissions ? (
                 <AvatarIcon
                   className="snap-install__scroll-button"
                   data-testid="snap-install-scroll"
@@ -217,7 +223,11 @@ export default function SnapInstall({
           cancelButtonType="default"
           hideCancel={hasError}
           disabled={
-            isLoading || (!hasError && isScrollable && !hasScrolledToBottom)
+            isLoading ||
+            (!hasError &&
+              isScrollable &&
+              !hasScrolledToBottom &&
+              !showAllPermissions)
           }
           onCancel={onCancel}
           cancelText={t('cancel')}
