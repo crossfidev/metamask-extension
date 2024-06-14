@@ -36,6 +36,34 @@ export const PermissionWeightThreshold = Object.freeze({
 });
 ///: END:ONLY_INCLUDE_IF
 
+export const PermissionWeight = Object.freeze({
+  eth_accounts: 3,
+  permittedChains: 3,
+  snap_dialog: 3,
+  snap_notify: 3,
+  snap_getBip32PublicKey: 2,
+  snap_getBip32Entropy: 1,
+  snap_getBip44Entropy: 1,
+  snap_getEntropy: 4,
+  snap_manageState: 4,
+  snap_getLocale: 4,
+  wallet_snap: 4,
+  endowment_networkAccess: 3,
+  endowment_webassembly: 4,
+  endowment_transactionInsight: 4,
+  endowment_cronjob: 4,
+  endowment_ethereumProvider: 4,
+  endowment_rpc: 4,
+  endowment_lifecycleHooks: 4,
+  endowment_pageHome: 4,
+  snap_manageAccounts: 3,
+  endowment_keyring: 4,
+  endowment_nameLookup: 3,
+  endowment_signatureInsight: 4,
+  connection_permission: 3,
+  unknown_permission: 3,
+});
+
 ///: BEGIN:ONLY_INCLUDE_IF(snaps)
 export * from './snaps/permissions';
 ///: END:ONLY_INCLUDE_IF
