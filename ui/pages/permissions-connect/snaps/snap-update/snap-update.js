@@ -202,8 +202,8 @@ export default function SnapUpdate({
                 showAllPermissions={onShowAllPermissions}
               />
             </Box>
-            {isScrollable && !hasScrolledToBottom && !showAllPermissions ? (
-              <Box className="snap-update__scroll-button-area">
+            <Box className="snap-update__scroll-button-area">
+              {isScrollable && !hasScrolledToBottom && !showAllPermissions ? (
                 <AvatarIcon
                   className="snap-install__scroll-button"
                   data-testid="snap-update-scroll"
@@ -213,8 +213,8 @@ export default function SnapUpdate({
                   onClick={scrollToBottom}
                   style={{ cursor: 'pointer' }}
                 />
-              </Box>
-            ) : null}
+              ) : null}
+            </Box>
           </>
         )}
       </Box>
