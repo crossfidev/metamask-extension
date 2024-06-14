@@ -10,7 +10,6 @@ import {
 } from '@metamask/snaps-utils';
 import { isNonEmptyArray } from '@metamask/controller-utils';
 ///: END:ONLY_INCLUDE_IF
-import classnames from 'classnames';
 import {
   RestrictedMethods,
   ///: BEGIN:ONLY_INCLUDE_IF(snaps)
@@ -19,7 +18,6 @@ import {
   PermissionWeight,
   ///: END:ONLY_INCLUDE_IF
 } from '../../../shared/constants/permissions';
-import Tooltip from '../../components/ui/tooltip';
 import {
   ///: BEGIN:ONLY_INCLUDE_IF(snaps)
   Icon,
@@ -700,51 +698,4 @@ export function getWeightedPermissions({
       [],
     )
     .sort((left, right) => left.weight - right.weight);
-}
-
-/**
- * Get the right icon for a permission. If a description is provided, the icon
- * will be wrapped in a tooltip. Otherwise, the icon will be rendered as-is. If
- * there's no right icon, this function will return null.
- *
- * If the weight is 1, the icon will be rendered with a warning color.
- *
- * @param {PermissionLabelObject} permission - The permission object.
- * @param {JSX.Element | string} permission.rightIcon - The right icon.
- * @param {string} permission.description - The description.
- * @param {number} permission.weight - The weight.
- * @returns {JSX.Element | null} The right icon, or null if there's no
- * right icon.
- */
-export function getRightIcon({ rightIcon, description, weight }) {
-  if (rightIcon && description) {
-    return (
-      <Tooltip
-        wrapperClassName={classnames(
-          'permission__tooltip-icon',
-          weight === 1 && 'permission__tooltip-icon__warning',
-        )}
-        html={<div>{description}</div>}
-        position="bottom"
-      >
-        {typeof rightIcon === 'string' ? (
-          <i className={rightIcon} />
-        ) : (
-          rightIcon
-        )}
-      </Tooltip>
-    );
-  }
-
-  if (rightIcon) {
-    if (typeof rightIcon === 'string') {
-      return (
-        <i className={classnames(rightIcon, 'permission__tooltip-icon')} />
-      );
-    }
-
-    return rightIcon;
-  }
-
-  return null;
 }
