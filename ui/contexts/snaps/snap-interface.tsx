@@ -1,4 +1,5 @@
 import {
+  File as FileObject,
   FormState,
   InterfaceState,
   UserInputEventType,
@@ -12,18 +13,19 @@ import React, {
   useRef,
 } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { bytesToBase64 } from '@metamask/utils';
 import { getMemoizedInterface } from '../../selectors';
 import {
   handleSnapRequest,
   updateInterfaceState,
   forceUpdateMetamaskState,
 } from '../../store/actions';
-import { mergeValue } from './utils';
+import { getFormValues, mergeValue } from './utils';
 
 export type HandleEvent = (args: {
   event: UserInputEventType;
   name?: string;
-  value?: string;
+  params?: Record<string, unknown>;
   flush?: boolean;
 }) => void;
 
@@ -33,12 +35,19 @@ export type HandleInputChange = (
   form?: string,
 ) => void;
 
+export type HandleFileChange = (
+  name: string,
+  file: File | null,
+  form?: string,
+) => void;
+
 export type GetValue = (name: string, form?: string) => string | undefined;
 
 export type SnapInterfaceContextType = {
   handleEvent: HandleEvent;
   getValue: GetValue;
   handleInputChange: HandleInputChange;
+  handleFileChange: HandleFileChange;
 };
 
 export const SnapInterfaceContext =
@@ -77,21 +86,21 @@ export const SnapInterfaceContextProvider: FunctionComponent<
     () => true,
   );
 
-  // We keep an internal copy of the state to speed-up the state update in the UI.
-  // It's kept in a ref to avoid useless re-rendering of the entire tree of components.
+  // We keep an internal copy of the state to speed up the state update in the
+  // UI. It's kept in a ref to avoid useless re-rendering of the entire tree of
+  // components.
   const internalState = useRef<InterfaceState>(initialState ?? {});
 
-  // Since the internal state is kept in a reference, it won't update when the interface is updated.
-  // We have to manually update it
+  // Since the internal state is kept in a reference, it won't update when the
+  // interface is updated. We have to manually update it.
   useEffect(() => {
     internalState.current = initialState;
   }, [initialState]);
 
   const rawSnapRequestFunction = (
     event: UserInputEventType,
-    name?: string,
-    value?: string,
-  ) =>
+    params: Record<string, unknown> = {},
+  ) => {
     handleSnapRequest({
       snapId,
       origin: '',
@@ -102,22 +111,21 @@ export const SnapInterfaceContextProvider: FunctionComponent<
         params: {
           event: {
             type: event,
-            // TODO: Allow null in the types and simplify this
-            ...(name !== undefined && name !== null ? { name } : {}),
-            ...(value !== undefined && value !== null ? { value } : {}),
+            ...params,
           },
           id: interfaceId,
           context,
         },
       },
     }).then(() => forceUpdateMetamaskState(dispatch));
+  };
 
-  // The submittion of user input events is debounced or throttled to avoid crashing the snap if
-  // there's too much events sent at the same time
+  // The submission of user input events is debounced or throttled to avoid
+  // crashing the snap if there's too many events sent at the same time.
   const snapRequestDebounced = debounce(rawSnapRequestFunction, 200);
   const snapRequestThrottled = throttle(rawSnapRequestFunction, 200);
 
-  // The update of the state is debounced to avoid crashes due to too much
+  // The update of the state is debounced to avoid crashes due to too many
   // updates in a short amount of time.
   const updateStateDebounced = debounce(
     (state) => dispatch(updateInterfaceState(interfaceId, state)),
@@ -129,22 +137,25 @@ export const SnapInterfaceContextProvider: FunctionComponent<
    *
    * @param options - An options bag.
    * @param options.event - The event type.
-   * @param options.name - The name of the component emitting the event.
-   * @param options.value - The value of the component emitting the event.
-   * @param options.flush - Optional flag to indicate whether the debounce should be flushed.
+   * @param options.params - Optional parameters to send with the event.
+   * @param options.flush - Optional flag to indicate whether the debounce
+   * should be flushed.
+   * @param options.name
    */
   const handleEvent: HandleEvent = ({
     event,
     name,
-    value = internalState.current[name],
+    params = getFormValues(event, internalState.current[name]),
     flush = false,
   }) => {
     // We always flush the debounced request for updating the state.
     updateStateDebounced.flush();
+
     const fn = THROTTLED_EVENTS.includes(event)
       ? snapRequestThrottled
       : snapRequestDebounced;
-    fn(event, name, value);
+
+    fn(event, { name, ...params });
 
     // Certain events have their own debounce or throttling logic
     // and therefore may want to flush
@@ -154,11 +165,15 @@ export const SnapInterfaceContextProvider: FunctionComponent<
   };
 
   const handleInputChangeDebounced = debounce(
-    (name, value) =>
+    (
+      event: UserInputEventType,
+      name: string | undefined,
+      params: Record<string, unknown>,
+    ) =>
       handleEvent({
-        event: UserInputEventType.InputChangeEvent,
+        event,
         name,
-        value,
+        params,
         flush: true,
       }),
     300,
@@ -177,7 +192,56 @@ export const SnapInterfaceContextProvider: FunctionComponent<
 
     internalState.current = state;
     updateStateDebounced(state);
-    handleInputChangeDebounced(name, value ?? '');
+    handleInputChangeDebounced(UserInputEventType.InputChangeEvent, name, {
+      value,
+    });
+  };
+
+  /**
+   * Handle the file change of an input.
+   *
+   * @param name - The name of the input.
+   * @param file - The file to upload.
+   * @param form - The name of the form containing the input.
+   */
+  const handleFileChange: HandleFileChange = (name, file, form) => {
+    if (file) {
+      file
+        .arrayBuffer()
+        .then((arrayBuffer) => new Uint8Array(arrayBuffer))
+        .then((uint8Array) => {
+          const base64 = bytesToBase64(uint8Array);
+          const fileObject: FileObject = {
+            name: file.name,
+            size: file.size,
+            contentType: file.type,
+            contents: base64,
+          };
+
+          const state = mergeValue(
+            internalState.current,
+            name,
+            fileObject,
+            form,
+          );
+
+          internalState.current = state;
+          updateStateDebounced(state);
+          handleInputChangeDebounced(UserInputEventType.FileUploadEvent, name, {
+            file: fileObject,
+          });
+        });
+
+      return;
+    }
+
+    const state = mergeValue(internalState.current, name, null, form);
+
+    internalState.current = state;
+    updateStateDebounced(state);
+    handleInputChangeDebounced(UserInputEventType.FileUploadEvent, name, {
+      file: null,
+    });
   };
 
   /**
@@ -202,7 +266,7 @@ export const SnapInterfaceContextProvider: FunctionComponent<
 
   return (
     <SnapInterfaceContext.Provider
-      value={{ handleEvent, getValue, handleInputChange }}
+      value={{ handleEvent, getValue, handleInputChange, handleFileChange }}
     >
       {children}
     </SnapInterfaceContext.Provider>

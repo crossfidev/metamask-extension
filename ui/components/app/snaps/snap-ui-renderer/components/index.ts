@@ -8,6 +8,7 @@ import { row } from './row';
 import { address } from './address';
 import { copyable } from './copyable';
 import { button } from './button';
+import { fileInput } from './file-input';
 import { form } from './form';
 import { input } from './input';
 import { bold } from './bold';
@@ -28,6 +29,7 @@ export const COMPONENT_MAPPING = {
   Row: row,
   Address: address,
   Button: button,
+  FileInput: fileInput,
   Form: form,
   Input: input,
   Bold: bold,

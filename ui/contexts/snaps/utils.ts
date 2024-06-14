@@ -1,4 +1,10 @@
-import { FormState, InterfaceState } from '@metamask/snaps-sdk';
+import {
+  // eslint-disable-next-line @typescript-eslint/no-shadow
+  File,
+  FormState,
+  InterfaceState,
+  UserInputEventType,
+} from '@metamask/snaps-sdk';
 
 /**
  * Merge a new input value in the interface state.
@@ -13,7 +19,7 @@ import { FormState, InterfaceState } from '@metamask/snaps-sdk';
 export const mergeValue = (
   state: InterfaceState,
   name: string,
-  value: string | null,
+  value: string | File | null,
   form?: string,
 ): InterfaceState => {
   if (form) {
@@ -27,3 +33,52 @@ export const mergeValue = (
   }
   return { ...state, [name]: value };
 };
+
+/**
+ * The values and files of a form.
+ *
+ * @property value - The values of the form fields, if any.
+ * @property files - The files of the form fields, if any.
+ */
+export type FormValues = {
+  value: Record<string, string | null>;
+  files: Record<string, File | null>;
+};
+
+/**
+ * Get the form values from the interface state. If the event is not a form
+ * submit event, an empty object is returned. Otherwise, the form values are
+ * extracted from the state, and the values and files are returned separately.
+ *
+ * @param event
+ * @param state - The interface state.
+ * @returns The form values.
+ */
+export function getFormValues(
+  event: UserInputEventType,
+  state?: FormState,
+): Partial<FormValues> {
+  if (event !== UserInputEventType.FormSubmitEvent) {
+    return {};
+  }
+
+  if (!state) {
+    return { value: {}, files: {} };
+  }
+
+  return Object.entries(state).reduce<FormValues>(
+    (accumulator, [key, value]) => {
+      const formValue = value as string | File | null;
+      if (formValue) {
+        if (typeof formValue === 'string') {
+          accumulator.value[key] = formValue;
+        } else {
+          accumulator.files[key] = formValue;
+        }
+      }
+
+      return accumulator;
+    },
+    { value: {}, files: {} },
+  );
+}
