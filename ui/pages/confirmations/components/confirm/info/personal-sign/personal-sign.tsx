@@ -9,11 +9,6 @@ import {
 } from '../../../../../../components/app/confirm/info/row';
 import { useI18nContext } from '../../../../../../hooks/useI18nContext';
 import { currentConfirmationSelector } from '../../../../../../selectors';
-import { Box } from '../../../../../../components/component-library';
-import {
-  BackgroundColor,
-  BorderRadius,
-} from '../../../../../../helpers/constants/design-system';
 import {
   hexToText,
   sanitizeString,
@@ -21,6 +16,7 @@ import {
 import { SignatureRequestType } from '../../../../types/confirm';
 import { isSIWESignatureRequest } from '../../../../utils';
 import { AlertRow } from '../../../../../../components/app/confirm/info/row/alert-row/alert-row';
+import { ConfirmInfoSection } from '../../../../../../components/app/confirm/info/row/section';
 
 const PersonalSignInfo: React.FC = () => {
   const t = useI18nContext();
@@ -38,26 +34,16 @@ const PersonalSignInfo: React.FC = () => {
   return (
     <>
       {isSiweSigReq && (
-        <Box
-          backgroundColor={BackgroundColor.backgroundDefault}
-          borderRadius={BorderRadius.MD}
-          padding={2}
-          marginBottom={4}
-        >
+        <ConfirmInfoSection>
           <ConfirmInfoRow
             label={t('simulationDetailsTitle')}
             tooltip={t('simulationDetailsTitleTooltip')}
           >
             <ConfirmInfoRowText text={t('siweSignatureSimulationDetailInfo')} />
           </ConfirmInfoRow>
-        </Box>
+        </ConfirmInfoSection>
       )}
-      <Box
-        backgroundColor={BackgroundColor.backgroundDefault}
-        borderRadius={BorderRadius.MD}
-        padding={2}
-        marginBottom={4}
-      >
+      <ConfirmInfoSection>
         <AlertRow
           alertKey="requestFrom"
           ownerId={currentConfirmation.id}
@@ -71,13 +57,8 @@ const PersonalSignInfo: React.FC = () => {
             <ConfirmInfoRowAddress address={from} />
           </ConfirmInfoRow>
         )}
-      </Box>
-      <Box
-        backgroundColor={BackgroundColor.backgroundDefault}
-        borderRadius={BorderRadius.MD}
-        padding={2}
-        marginBottom={4}
-      >
+      </ConfirmInfoSection>
+      <ConfirmInfoSection>
         <AlertRow
           alertKey="message"
           ownerId={currentConfirmation.id}
@@ -89,7 +70,7 @@ const PersonalSignInfo: React.FC = () => {
             )}
           />
         </AlertRow>
-      </Box>
+      </ConfirmInfoSection>
     </>
   );
 };
