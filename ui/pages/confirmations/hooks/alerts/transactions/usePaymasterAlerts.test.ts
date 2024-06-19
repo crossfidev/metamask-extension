@@ -90,7 +90,7 @@ describe('usePaymasterAlerts', () => {
 
     expect(alerts).toEqual([
       {
-        field: RowAlertKey.EstimatedFee,
+        field: RowAlertKey.PaymasterAddress,
         key: 'usingPaymaster',
         message: 'The gas for this transaction will be paid by a paymaster.',
         reason: 'Using Paymaster',
