@@ -39,7 +39,7 @@ export function usePaymasterAlerts(): Alert[] {
 
     return [
       {
-        field: RowAlertKey.EstimatedFee,
+        field: RowAlertKey.PaymasterAddress,
         key: 'usingPaymaster',
         message: t('paymasterInUse'),
         reason: t('alertReasonUsingPaymaster'),

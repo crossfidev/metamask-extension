@@ -15,7 +15,7 @@ import {
 } from '../../../../../../helpers/utils/util';
 import { SignatureRequestType } from '../../../../types/confirm';
 import { isSIWESignatureRequest } from '../../../../utils';
-import { AlertRow } from '../../../../../../components/app/confirm/info/row/alert-row/alert-row';
+import { ConfirmInfoAlertRow } from '../../../../../../components/app/confirm/info/row/alert-row/alert-row';
 import { ConfirmInfoSection } from '../../../../../../components/app/confirm/info/row/section';
 
 const PersonalSignInfo: React.FC = () => {
@@ -44,14 +44,14 @@ const PersonalSignInfo: React.FC = () => {
         </ConfirmInfoSection>
       )}
       <ConfirmInfoSection>
-        <AlertRow
+        <ConfirmInfoAlertRow
           alertKey="requestFrom"
           ownerId={currentConfirmation.id}
           label={t('requestFrom')}
           tooltip={t('requestFromInfo')}
         >
           <ConfirmInfoRowUrl url={currentConfirmation.msgParams.origin} />
-        </AlertRow>
+        </ConfirmInfoAlertRow>
         {isSiweSigReq && (
           <ConfirmInfoRow label={t('signingInWith')}>
             <ConfirmInfoRowAddress address={from} />
@@ -59,7 +59,7 @@ const PersonalSignInfo: React.FC = () => {
         )}
       </ConfirmInfoSection>
       <ConfirmInfoSection>
-        <AlertRow
+        <ConfirmInfoAlertRow
           alertKey="message"
           ownerId={currentConfirmation.id}
           label={t('message')}
@@ -69,7 +69,7 @@ const PersonalSignInfo: React.FC = () => {
               hexToText(currentConfirmation.msgParams?.data),
             )}
           />
-        </AlertRow>
+        </ConfirmInfoAlertRow>
       </ConfirmInfoSection>
     </>
   );
