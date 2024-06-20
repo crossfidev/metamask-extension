@@ -162,6 +162,9 @@
   "accountSelectionRequired": {
     "message": "Bir hesap seçmeniz gerekiyor!"
   },
+  "accountTypeNotSupported": {
+    "message": "Hesap türü desteklenmiyor"
+  },
   "accounts": {
     "message": "Hesaplar"
   },
@@ -311,6 +314,9 @@
   "addingTokens": {
     "message": "Token'leri ekleme"
   },
+  "additionalNetworks": {
+    "message": "İlave ağlar"
+  },
   "address": {
     "message": "Adres"
   },
@@ -398,12 +404,21 @@
   "allPermissions": {
     "message": "Tüm İzinler"
   },
+  "allTimeHigh": {
+    "message": "Tüm zamanların en yükseği"
+  },
+  "allTimeLow": {
+    "message": "Tüm zamanların en düşüğü"
+  },
   "allYourNFTsOf": {
     "message": "Tüm $1 NFT'leriniz",
     "description": "$1 is a link to contract on the block explorer when we're not able to retrieve a erc721 or erc1155 name"
   },
   "allow": {
     "message": "İzin Ver"
+  },
+  "allowMetaMaskToDetectTokens": {
+    "message": "MetaMask'in otomatik algılama ile token'lerinizi algılamasına ve göstermesine izin verin. Şunları yapabileceksiniz:"
   },
   "allowMmiToConnectToCustodian": {
     "message": "MMI'nin hesaplarınızı içe aktarmak için $1 ile bağlantı kurmasına izin verir."
@@ -597,6 +612,10 @@
   "basicConfigurationBannerTitle": {
     "message": "Temel işlevsellik kapalı"
   },
+  "basicConfigurationDescription": {
+    "message": "MetaMask, internet hizmetleri üzerinden token bilgileri ve gaz ayarları gibi temel özellikler sunar. İnternet hizmetlerini kullandığınızda IP adresiniz, bu durumda MetaMask ile, paylaşılır. Bu tıpkı herhangi bir web sitesini ziyaret ettiğinizde olduğu gibidir. MetaMask bu verileri geçici olarak kullanır ve verilerinizi hiçbir zaman satmaz. Bir VPN kullanabilir veya bu hizmetleri kapatabilirsiniz ancak bu durum MetaMask deneyiminizi etkileyebilir. Daha fazla bilgi için $1 bölümümüzü okuyun.",
+    "description": "$1 is to be replaced by the message for privacyMsg, and will link to https://consensys.io/privacy-policy"
+  },
   "basicConfigurationLabel": {
     "message": "Temel işlevsellik"
   },
@@ -640,6 +659,10 @@
   "betaWalletCreationSuccessReminder2": {
     "message": "MetaMask hiçbir zaman Gizli Kurtarma İfadenizi istemez."
   },
+  "billionAbbreviation": {
+    "message": "MR",
+    "description": "Shortened form of 'billion'"
+  },
   "blockExplorerAccountAction": {
     "message": "Hesap",
     "description": "This is used with viewOnEtherscan and viewInExplorer e.g View Account in Explorer"
@@ -665,6 +688,9 @@
   "blockaid": {
     "message": "Blockaid"
   },
+  "blockaidAlertInfo": {
+    "message": "Bu taleple ilerlemenizi önermiyoruz."
+  },
   "blockaidDescriptionApproveFarming": {
     "message": "Bu talebi onaylarsanız dolandırıcılıkla ünlü üçüncü bir taraf tüm varlıklarınızı çalabilir."
   },
@@ -685,6 +711,9 @@
   },
   "blockaidDescriptionTransferFarming": {
     "message": "Bu talebi onaylarsanız dolandırıcılıkla ünlü üçüncü bir taraf tüm varlıklarınızı çalar."
+  },
+  "blockaidDescriptionWarning": {
+    "message": "Bu aldatıcı bir talep olabilir. Sadece ilgili her adrese güveniyorsanız devam edin."
   },
   "blockaidMessage": {
     "message": "Gizlilik koruması - hiçbir veri üçüncü taraflarla paylaşılmaz. Arbitrum, Avalanche, BNB chain, Ethereum Ana Ağı, Linea, Optimism, Polygon, Base ve Sepolia için sunulur."
@@ -785,6 +814,9 @@
   "chromeRequiredForHardwareWallets": {
     "message": "Donanım Cüzdanınıza bağlamak için MetaMask'ı Google Chrome'da kullanmanız gerekir."
   },
+  "circulatingSupply": {
+    "message": "Dolaşımdaki arz"
+  },
   "clear": {
     "message": "Temizle"
   },
@@ -844,6 +876,9 @@
   "confirmAlertModalAcknowledge": {
     "message": "Uyarıları kabul ediyorum ve yine de ilerlemek istiyorum"
   },
+  "confirmAlertModalAcknowledgeBlockaid": {
+    "message": "Uyarıyı kabul ediyor ve yine de ilerlemek istiyorum"
+  },
   "confirmAlertModalDetails": {
     "message": "Oturum açarsanız dolandırıcıklarla bilinen üçüncü bir taraf tüm varlıklarınızı ele geçirebilir. İlerlemeden önce lütfen uyarıları inceleyin."
   },
@@ -868,8 +903,14 @@
   "confirmTitleDescContractInteractionTransaction": {
     "message": "Bu işlemi sadece içeriği tam olarak anlıyorsanız ve talepte bulunan siteye güveniyorsanız onaylayın."
   },
+  "confirmTitleDescPermitSignature": {
+    "message": "Bu site token'lerinizi harcamak için izin istiyor."
+  },
   "confirmTitleDescSignature": {
     "message": "Bu mesajı sadece içeriği onaylıyorsanız ve talepte bulunan siteye güveniyorsanız onaylayın."
+  },
+  "confirmTitlePermitSignature": {
+    "message": "Harcama üst limiti talebi"
   },
   "confirmTitleSignature": {
     "message": "İmza talebi"
@@ -1269,6 +1310,18 @@
   "dataBackupSeemsCorrupt": {
     "message": "Verileriniz geri yüklenemiyor. Dosya bozuk gibi görünüyor."
   },
+  "dataCollectionForMarketing": {
+    "message": "Pazarlama amacıyla veri toplama"
+  },
+  "dataCollectionForMarketingDescription": {
+    "message": "MetaMetrics'i, pazarlama iletişimlerimizle nasıl etkileşimde bulunduğunuzu öğrenmek için kullanacağız. İlgili haberleri (ürün özellikleri ve diğer materyaller gibi) paylaşabiliriz."
+  },
+  "dataCollectionWarningPopoverButton": {
+    "message": "Tamam"
+  },
+  "dataCollectionWarningPopoverDescription": {
+    "message": "Pazarlama amacıyla veri toplama seçeneğini kapattınız. Bu, sadece bu cihaz için geçerlidir. MetaMask'i başka cihazlarda kullanırsanız bu cihazlarda da vazgeçtiğinizden emin olun."
+  },
   "dataHex": {
     "message": "On Altılı"
   },
@@ -1345,6 +1398,12 @@
   "developerOptions": {
     "message": "Geliştirici Seçenekleri"
   },
+  "developerOptionsNetworkMenuRedesignDescription": {
+    "message": "Ağlar menüsünün yeni tasarımını açar ve kapatır"
+  },
+  "developerOptionsNetworkMenuRedesignTitle": {
+    "message": "Ağ Menüsünün Yeni Tasarımı"
+  },
   "developerOptionsResetStatesAnnouncementsDescription": {
     "message": "Tüm duyurular için isShown boolean değerini false olarak sıfırlar. Duyurular, Yenilikler açılır penceresi modalında gösterilen bildirimlerdir."
   },
@@ -1413,6 +1472,9 @@
   },
   "displayNftMediaDescription": {
     "message": "NFT medyasının ve verilerin gösterilmesi IP adresinizin OpenSea veya diğer üçüncü taraflarla paylaşılmasına neden olur. Bu durum, saldırganların IP adresinizi Ethereum adresinizle ilişkilendirmesini sağlayabilir. NFT otomatik algılama bu ayara dayalıdır ve bu ayar kapatıldığında kullanılamaz olur."
+  },
+  "diveStraightIntoUsingYourTokens": {
+    "message": "Doğrudan token'lerinizi kullanmaya başlayın"
   },
   "doNotShare": {
     "message": "Bunu hiç kimseyle paylaşmayın"
@@ -1542,6 +1604,9 @@
   "editSpeedUpEditGasFeeModalTitle": {
     "message": "Hızlandırma gaz ücretini düzenle"
   },
+  "effortlesslyNavigateYourDigitalAssets": {
+    "message": "Dijital varlıklarınızda zahmetsizce gezinin"
+  },
   "enable": {
     "message": "Etkinleştir"
   },
@@ -1557,6 +1622,9 @@
   "enableToken": {
     "message": "şunu etkinleştir: $1",
     "description": "$1 is a token symbol, e.g. ETH"
+  },
+  "enableTokenAutoDetection": {
+    "message": "Otomatik token algılamayı etkinleştir"
   },
   "enabled": {
     "message": "Etkinleştirildi"
@@ -1890,7 +1958,7 @@
     "message": "Hesabı $1 üzerinde görüntüleyin"
   },
   "getStartedWithNFTs": {
-    "message": "NFT satın almak için $1 edinin",
+    "message": "NFT satın almak için $1$ edinin",
     "description": "$1 is the token symbol"
   },
   "getStartedWithNFTsDescription": {
@@ -2045,6 +2113,9 @@
   },
   "imToken": {
     "message": "imToken"
+  },
+  "immediateAccessToYourTokens": {
+    "message": "Token'lerinize derhal erişim"
   },
   "import": {
     "message": "İçe Aktar",
@@ -2507,6 +2578,12 @@
   "manageInSettings": {
     "message": "Ayarlar kısmında yönet"
   },
+  "marketCap": {
+    "message": "Piyasa değeri"
+  },
+  "marketDetails": {
+    "message": "Piyasa bilgileri"
+  },
   "max": {
     "message": "Maksimum"
   },
@@ -2571,6 +2648,10 @@
   },
   "metrics": {
     "message": "Metrikler"
+  },
+  "millionAbbreviation": {
+    "message": "MN",
+    "description": "Shortened form of 'million'"
   },
   "mismatchAccount": {
     "message": "Seçili hesap ($1) imza atmaya çalışan hesaptan ($2) farklı"
@@ -2931,6 +3012,9 @@
   "noDomainResolution": {
     "message": "Alan adı için çözümleme sunulmamış."
   },
+  "noHardwareWalletOrSnapsSupport": {
+    "message": "Geçerli tarayıcı sürümünüzle snap'ler ve çoğu donanım cüzdanı çalışmayacak."
+  },
   "noNFTs": {
     "message": "Henüz NFT yok"
   },
@@ -2975,6 +3059,9 @@
   },
   "notEnoughGas": {
     "message": "Yeterli gaz yok"
+  },
+  "notRightNow": {
+    "message": "Şimdi değil"
   },
   "note": {
     "message": "Not"
@@ -3176,6 +3263,37 @@
   "on": {
     "message": "Açık"
   },
+  "onboardedMetametricsAccept": {
+    "message": "Kabul ediyorum"
+  },
+  "onboardedMetametricsDisagree": {
+    "message": "Hayır, istemiyorum"
+  },
+  "onboardedMetametricsKey1": {
+    "message": "En yeni gelişmeler"
+  },
+  "onboardedMetametricsKey2": {
+    "message": "Ürün özellikleri"
+  },
+  "onboardedMetametricsKey3": {
+    "message": "İlgili diğer promosyon materyalleri"
+  },
+  "onboardedMetametricsLink": {
+    "message": "MetaMetrics"
+  },
+  "onboardedMetametricsParagraph1": {
+    "message": "$1 bağlantısına ek olarak pazarlama iletişimleri ile nasıl etkileşimde bulunduğunuzu anlamak amacıyla verileri kullanmak istiyoruz.",
+    "description": "$1 represents the 'onboardedMetametricsLink' locale string"
+  },
+  "onboardedMetametricsParagraph2": {
+    "message": "Bu, sizinle neleri paylaşacağımızı kişiselleştirebilmemize yardımcı olur, örneğin:"
+  },
+  "onboardedMetametricsParagraph3": {
+    "message": "Unutmayın, sunduğunuz verileri hiçbir zaman satmayız ve dilediğiniz zaman tercihinizi değiştirebilirsiniz."
+  },
+  "onboardedMetametricsTitle": {
+    "message": "Deneyiminizi iyileştirmemize yardımcı olun"
+  },
   "onboarding": {
     "message": "Katılım"
   },
@@ -3292,6 +3410,9 @@
   "onboardingMetametricsTitle": {
     "message": "MetaMask'i iyileştirmemize yardımcı olun"
   },
+  "onboardingMetametricsUseDataCheckbox": {
+    "message": "Bu verileri, pazarlama iletişimlerimizle nasıl etkileşimde bulunduğunuzu öğrenmek için kullanacağız. İlgili haberleri (ürün özellikleri gibi) paylaşabiliriz."
+  },
   "onboardingPinExtensionBillboardAccess": {
     "message": "Tam erişim"
   },
@@ -3334,6 +3455,22 @@
   "onboardingUsePhishingDetectionDescription": {
     "message": "Kimlik avı tespiti uyarıları $1 ile iletişime bağlıdır. jsDeliver IP adresinize erişim sağlayacaktır. Şunu görüntüleyin: $2.",
     "description": "The $1 is the word 'jsDeliver', from key 'jsDeliver' and $2 is the words Privacy Policy from key 'privacyMsg', both separated here so that it can be wrapped as a link"
+  },
+  "oneDayAbbreviation": {
+    "message": "1G",
+    "description": "Shortened form of '1 day'"
+  },
+  "oneMonthAbbreviation": {
+    "message": "1A",
+    "description": "Shortened form of '1 month'"
+  },
+  "oneWeekAbbreviation": {
+    "message": "1H",
+    "description": "Shortened form of '1 week'"
+  },
+  "oneYearAbbreviation": {
+    "message": "1Y",
+    "description": "Shortened form of '1 year'"
   },
   "onekey": {
     "message": "OneKey"
@@ -3695,6 +3832,9 @@
   },
   "permissionsPageTourTitle": {
     "message": "Bağlı siteler şimdi izinler oldu"
+  },
+  "permitSimulationDetailInfo": {
+    "message": "Harcama yapan tarafa hesabınızdan bu kadar çok token'i harcama izni veriyorsunuz."
   },
   "personalAddressDetected": {
     "message": "Kişisel adres algılandı. Token sözleşme adresini girin."
@@ -4205,6 +4345,9 @@
   "searchAccounts": {
     "message": "Hesapları ara"
   },
+  "searchNfts": {
+    "message": "NFT ara"
+  },
   "searchTokens": {
     "message": "Token ara"
   },
@@ -4493,6 +4636,9 @@
   "signing": {
     "message": "İmzalanıyor"
   },
+  "signingInWith": {
+    "message": "Şununla giriş yap:"
+  },
   "simulationDetailsFailed": {
     "message": "Tahmininiz yüklenirken bir hata oldu."
   },
@@ -4632,6 +4778,14 @@
   },
   "snapAccountsDescription": {
     "message": "Üçüncü taraf Snapleri tarafından kontrol edilen hesaplar."
+  },
+  "snapConnectTo": {
+    "message": "$1 adresine bağlan",
+    "description": "$1 is the website URL or a Snap name. Used for Snaps pre-approved connections."
+  },
+  "snapConnectionPermissionDescription": {
+    "message": "Onayınız olmadan $1 otomatik olarak $2 adresine bağlansın.",
+    "description": "Used for Snap pre-approved connections. $1 is the Snap name, $2 is a website URL."
   },
   "snapConnectionWarning": {
     "message": "$1 şunu kullanmak istiyor: $2",
@@ -4799,6 +4953,9 @@
   },
   "spendLimitTooLarge": {
     "message": "Harcama limiti çok büyük"
+  },
+  "spender": {
+    "message": "Harcama Yapan Taraf"
   },
   "spendingCap": {
     "message": "Harcama üst limiti"
@@ -5026,6 +5183,10 @@
   },
   "submitted": {
     "message": "Gönderildi"
+  },
+  "suggestedBySnap": {
+    "message": "$1 tarafından öneriliyor",
+    "description": "$1 is the snap name"
   },
   "suggestedTokenSymbol": {
     "message": "Önerilen ticker sembolü:"
@@ -5537,6 +5698,10 @@
   "thisCollection": {
     "message": "bu koleksiyon"
   },
+  "threeMonthsAbbreviation": {
+    "message": "3A",
+    "description": "Shortened form of '3 months'"
+  },
   "time": {
     "message": "Zaman"
   },
@@ -5616,6 +5781,9 @@
   "tokenContractAddress": {
     "message": "Token sözleşme adresi"
   },
+  "tokenDecimal": {
+    "message": "Token ondalığı"
+  },
   "tokenDecimalFetchFailed": {
     "message": "Token ondalığı gereklidir. Şurada bulabilirsiniz: $1"
   },
@@ -5664,6 +5832,9 @@
   },
   "total": {
     "message": "Toplam"
+  },
+  "totalVolume": {
+    "message": "Toplam hacim"
   },
   "transaction": {
     "message": "işlem"
@@ -5769,6 +5940,10 @@
   },
   "transferFrom": {
     "message": "Transfer kaynağı:"
+  },
+  "trillionAbbreviation": {
+    "message": "T",
+    "description": "Shortened form of 'trillion'"
   },
   "troubleConnectingToLedgerU2FOnFirefox": {
     "message": "Ledger'ınıza bağlanırken sorun yaşıyoruz. $1",
@@ -6142,6 +6317,12 @@
   },
   "yourAccounts": {
     "message": "Hesaplarınız"
+  },
+  "yourActivity": {
+    "message": "Aktiviteniz"
+  },
+  "yourBalance": {
+    "message": "Bakiyeniz"
   },
   "yourFundsMayBeAtRisk": {
     "message": "Paranız tehlikede olabilir"

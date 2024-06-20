@@ -162,6 +162,9 @@
   "accountSelectionRequired": {
     "message": "Debe seleccionar una cuenta."
   },
+  "accountTypeNotSupported": {
+    "message": "Tipo de cuenta no admitido"
+  },
   "accounts": {
     "message": "Cuentas"
   },
@@ -311,6 +314,9 @@
   "addingTokens": {
     "message": "Agregando tokens"
   },
+  "additionalNetworks": {
+    "message": "Redes adicionales"
+  },
   "address": {
     "message": "Dirección"
   },
@@ -398,12 +404,21 @@
   "allPermissions": {
     "message": "Todos los permisos"
   },
+  "allTimeHigh": {
+    "message": "Punto más alto"
+  },
+  "allTimeLow": {
+    "message": "Punto más bajo"
+  },
   "allYourNFTsOf": {
     "message": "Todos sus NFT de $1",
     "description": "$1 is a link to contract on the block explorer when we're not able to retrieve a erc721 or erc1155 name"
   },
   "allow": {
     "message": "Permitir"
+  },
+  "allowMetaMaskToDetectTokens": {
+    "message": "Permita que MetaMask detecte y muestre sus tokens con autodetección. Podrá:"
   },
   "allowMmiToConnectToCustodian": {
     "message": "Esto permitirá que MMI se conecte a $1 para importar sus cuentas."
@@ -530,6 +545,9 @@
   "attributions": {
     "message": "Atribuciones"
   },
+  "auroraRpcDeprecationMessage": {
+    "message": "La URL de RPC de Infura ya no es compatible con Aurora."
+  },
   "authorizedPermissions": {
     "message": "Ha autorizado los siguientes permisos"
   },
@@ -594,6 +612,10 @@
   "basicConfigurationBannerTitle": {
     "message": "La funcionalidad básica está desactivada"
   },
+  "basicConfigurationDescription": {
+    "message": "MetaMask ofrece funciones básicas como los detalles del token y la configuración de gas mediante servicios de Internet. Al utilizar los servicios de Internet, su dirección IP es compartida, en este caso con MetaMask. Es lo mismo que cuando visita cualquier página web. MetaMask utiliza estos datos temporalmente y nunca los vende. Puede utilizar una VPN o desactivar estos servicios, pero esto podría afectar su experiencia con MetaMask. Para saber más, consulte nuestra $1.",
+    "description": "$1 is to be replaced by the message for privacyMsg, and will link to https://consensys.io/privacy-policy"
+  },
   "basicConfigurationLabel": {
     "message": "Funcionalidad básica"
   },
@@ -637,6 +659,10 @@
   "betaWalletCreationSuccessReminder2": {
     "message": "MetaMask beta nunca le pedirá su frase secreta de recuperación."
   },
+  "billionAbbreviation": {
+    "message": "mm",
+    "description": "Shortened form of 'billion'"
+  },
   "blockExplorerAccountAction": {
     "message": "Cuenta",
     "description": "This is used with viewOnEtherscan and viewInExplorer e.g View Account in Explorer"
@@ -662,6 +688,9 @@
   "blockaid": {
     "message": "Blockaid"
   },
+  "blockaidAlertInfo": {
+    "message": "No le recomendamos que siga adelante con esta solicitud."
+  },
   "blockaidDescriptionApproveFarming": {
     "message": "Si aprueba esta solicitud, un tercero conocido por realizar estafas podría tomar todos sus activos."
   },
@@ -682,6 +711,9 @@
   },
   "blockaidDescriptionTransferFarming": {
     "message": "Si aprueba esta solicitud, un tercero conocido por estafas tomará todos sus activos."
+  },
+  "blockaidDescriptionWarning": {
+    "message": "Podría tratarse de una solicitud engañosa. Continúe solamente si confía en todas las direcciones implicadas."
   },
   "blockaidMessage": {
     "message": "Preservación de la privacidad: no se comparten datos con terceros. Disponible en Arbitrum, Avalanche, BNB Chain, la red principal de Ethereum, Linea, Optimism, Polygon, Base y Sepolia."
@@ -782,6 +814,9 @@
   "chromeRequiredForHardwareWallets": {
     "message": "Debe usar MetaMask en Google Chrome para poder conectarse a su monedero físico."
   },
+  "circulatingSupply": {
+    "message": "Suministro circulante"
+  },
   "clear": {
     "message": "Borrar"
   },
@@ -841,6 +876,9 @@
   "confirmAlertModalAcknowledge": {
     "message": "Soy consciente de las alertas y aun así deseo continuar"
   },
+  "confirmAlertModalAcknowledgeBlockaid": {
+    "message": "Soy consciente de la alerta y aun así deseo continuar"
+  },
   "confirmAlertModalDetails": {
     "message": "Si inicia sesión, un tercero conocido por estafas podría quedarse con todos sus activos. Revise las alertas antes de continuar."
   },
@@ -865,8 +903,14 @@
   "confirmTitleDescContractInteractionTransaction": {
     "message": "Solo confirme esta transacción si entiende completamente el contenido y confía en el sitio solicitante."
   },
+  "confirmTitleDescPermitSignature": {
+    "message": "Este sitio solicita permiso para gastar sus tokens."
+  },
   "confirmTitleDescSignature": {
     "message": "Solo confirme este mensaje si aprueba el contenido y confía en el sitio solicitante."
+  },
+  "confirmTitlePermitSignature": {
+    "message": "Solicitud de límite de gasto"
   },
   "confirmTitleSignature": {
     "message": "Solicitud de firma"
@@ -1266,6 +1310,18 @@
   "dataBackupSeemsCorrupt": {
     "message": "No se pueden restaurar sus datos. El archivo parece estar corrupto."
   },
+  "dataCollectionForMarketing": {
+    "message": "Recopilación de datos para marketing"
+  },
+  "dataCollectionForMarketingDescription": {
+    "message": "Usaremos MetaMetrics para saber cómo interactúa con nuestras comunicaciones de marketing. Es posible que compartamos noticias relevantes (como características del producto y otros materiales)."
+  },
+  "dataCollectionWarningPopoverButton": {
+    "message": "Bien"
+  },
+  "dataCollectionWarningPopoverDescription": {
+    "message": "Desactivó la recopilación de datos para nuestros fines de marketing. Esto solo se aplica a este dispositivo. Si utiliza MetaMask en otros dispositivos, asegúrese de desactivarlo allí también."
+  },
   "dataHex": {
     "message": "Hex"
   },
@@ -1342,6 +1398,12 @@
   "developerOptions": {
     "message": "Opciones de desarrollador"
   },
+  "developerOptionsNetworkMenuRedesignDescription": {
+    "message": "Activa o desactiva el nuevo diseño del menú Redes"
+  },
+  "developerOptionsNetworkMenuRedesignTitle": {
+    "message": "Rediseño del menú Redes"
+  },
   "developerOptionsResetStatesAnnouncementsDescription": {
     "message": "Restablece el valor booleano isShown a falso para todos los anuncios. Los anuncios son las notificaciones que se muestran en la ventana emergente Novedades."
   },
@@ -1410,6 +1472,9 @@
   },
   "displayNftMediaDescription": {
     "message": "Mostrar los medios y datos NFT expone su dirección IP a OpenSea u otros terceros. Esto puede permitir que los atacantes asocien su dirección IP con su dirección Ethereum. La detección automática de NFT se basa en esta configuración y no estará disponible cuando esté desactivada."
+  },
+  "diveStraightIntoUsingYourTokens": {
+    "message": "Comience a utilizar sus tokens"
   },
   "doNotShare": {
     "message": "No comparta esto con nadie"
@@ -1539,6 +1604,9 @@
   "editSpeedUpEditGasFeeModalTitle": {
     "message": "Editar la tarifa de aceleración de gas"
   },
+  "effortlesslyNavigateYourDigitalAssets": {
+    "message": "Navegue sin esfuerzo por sus activos digitales"
+  },
   "enable": {
     "message": "Habilitar"
   },
@@ -1554,6 +1622,9 @@
   "enableToken": {
     "message": "activar $1",
     "description": "$1 is a token symbol, e.g. ETH"
+  },
+  "enableTokenAutoDetection": {
+    "message": "Activar la autodetección de tokens"
   },
   "enabled": {
     "message": "Activado"
@@ -2043,6 +2114,9 @@
   "imToken": {
     "message": "imToken"
   },
+  "immediateAccessToYourTokens": {
+    "message": "Acceso inmediato a sus tokens"
+  },
   "import": {
     "message": "Importar",
     "description": "Button to import an account from a selected file"
@@ -2504,6 +2578,12 @@
   "manageInSettings": {
     "message": "Administrar en configuración"
   },
+  "marketCap": {
+    "message": "Capitalización bursátil"
+  },
+  "marketDetails": {
+    "message": "Detalles del mercado"
+  },
   "max": {
     "message": "Máx."
   },
@@ -2568,6 +2648,10 @@
   },
   "metrics": {
     "message": "Indicadores"
+  },
+  "millionAbbreviation": {
+    "message": "m",
+    "description": "Shortened form of 'million'"
   },
   "mismatchAccount": {
     "message": "Su cuenta seleccionada ($1) es diferente a la cuenta que intenta firmar ($2)"
@@ -2928,6 +3012,9 @@
   "noDomainResolution": {
     "message": "No se proporcionó resolución para el dominio."
   },
+  "noHardwareWalletOrSnapsSupport": {
+    "message": "Snaps, y la mayoría de los monederos físicos, no funcionarán con la versión actual de su navegador."
+  },
   "noNFTs": {
     "message": "No hay ningún NFT aún"
   },
@@ -2972,6 +3059,9 @@
   },
   "notEnoughGas": {
     "message": "No hay gas suficiente"
+  },
+  "notRightNow": {
+    "message": "Ahora no"
   },
   "note": {
     "message": "Nota"
@@ -3173,6 +3263,37 @@
   "on": {
     "message": "Activado"
   },
+  "onboardedMetametricsAccept": {
+    "message": "Acepto"
+  },
+  "onboardedMetametricsDisagree": {
+    "message": "No, gracias"
+  },
+  "onboardedMetametricsKey1": {
+    "message": "Últimas novedades"
+  },
+  "onboardedMetametricsKey2": {
+    "message": "Características de productos"
+  },
+  "onboardedMetametricsKey3": {
+    "message": "Otros materiales promocionales relevantes"
+  },
+  "onboardedMetametricsLink": {
+    "message": "MetaMetrics"
+  },
+  "onboardedMetametricsParagraph1": {
+    "message": "Además de $1, nos gustaría utilizar datos para comprender cómo interactúa con las comunicaciones de marketing.",
+    "description": "$1 represents the 'onboardedMetametricsLink' locale string"
+  },
+  "onboardedMetametricsParagraph2": {
+    "message": "Esto nos ayuda a personalizar lo que compartimos con usted, como:"
+  },
+  "onboardedMetametricsParagraph3": {
+    "message": "Recuerde, nunca vendemos los datos que usted proporciona y puede optar por no participar en cualquier momento."
+  },
+  "onboardedMetametricsTitle": {
+    "message": "Ayúdenos a mejorar su experiencia"
+  },
   "onboarding": {
     "message": "Incorporación"
   },
@@ -3289,6 +3410,9 @@
   "onboardingMetametricsTitle": {
     "message": "Ayúdenos a mejorar MetaMask"
   },
+  "onboardingMetametricsUseDataCheckbox": {
+    "message": "Utilizaremos estos datos para saber cómo interactúa con nuestras comunicaciones de marketing. Es posible que compartamos noticias relevantes (como características del producto)."
+  },
   "onboardingPinExtensionBillboardAccess": {
     "message": "Acceso completo"
   },
@@ -3331,6 +3455,22 @@
   "onboardingUsePhishingDetectionDescription": {
     "message": "Las alertas de detección de phishing se basan en la comunicación con $1. jsDeliver tendrá acceso a su dirección IP. Ver 2$.",
     "description": "The $1 is the word 'jsDeliver', from key 'jsDeliver' and $2 is the words Privacy Policy from key 'privacyMsg', both separated here so that it can be wrapped as a link"
+  },
+  "oneDayAbbreviation": {
+    "message": "1 d",
+    "description": "Shortened form of '1 day'"
+  },
+  "oneMonthAbbreviation": {
+    "message": "1 m",
+    "description": "Shortened form of '1 month'"
+  },
+  "oneWeekAbbreviation": {
+    "message": "1 s",
+    "description": "Shortened form of '1 week'"
+  },
+  "oneYearAbbreviation": {
+    "message": "1 a",
+    "description": "Shortened form of '1 year'"
   },
   "onekey": {
     "message": "OneKey"
@@ -3692,6 +3832,9 @@
   },
   "permissionsPageTourTitle": {
     "message": "Los sitios conectados ahora tienen permisos"
+  },
+  "permitSimulationDetailInfo": {
+    "message": "Le está dando permiso al gastador para gastar esta cantidad de tokens de su cuenta."
   },
   "personalAddressDetected": {
     "message": "Se detectó una dirección personal. Ingrese la dirección de contrato del token."
@@ -4202,6 +4345,9 @@
   "searchAccounts": {
     "message": "Buscar cuentas"
   },
+  "searchNfts": {
+    "message": "Buscar NFT"
+  },
   "searchTokens": {
     "message": "Buscar tokens"
   },
@@ -4490,6 +4636,9 @@
   "signing": {
     "message": "Firmando"
   },
+  "signingInWith": {
+    "message": "Iniciar sesión con"
+  },
   "simulationDetailsFailed": {
     "message": "Se produjo un error al cargar su estimación."
   },
@@ -4629,6 +4778,14 @@
   },
   "snapAccountsDescription": {
     "message": "Cuentas controladas por Snaps de terceros."
+  },
+  "snapConnectTo": {
+    "message": "Conectarse a $1",
+    "description": "$1 is the website URL or a Snap name. Used for Snaps pre-approved connections."
+  },
+  "snapConnectionPermissionDescription": {
+    "message": "Permita que $1 se conecte automáticamente a $2 sin su aprobación.",
+    "description": "Used for Snap pre-approved connections. $1 is the Snap name, $2 is a website URL."
   },
   "snapConnectionWarning": {
     "message": "$1 quiere conectarse a $2",
@@ -4796,6 +4953,9 @@
   },
   "spendLimitTooLarge": {
     "message": "El límite de gastos es demasiado alto"
+  },
+  "spender": {
+    "message": "Gastador"
   },
   "spendingCap": {
     "message": "Límite de gasto"
@@ -5023,6 +5183,10 @@
   },
   "submitted": {
     "message": "Enviado"
+  },
+  "suggestedBySnap": {
+    "message": "Sugerido por $1",
+    "description": "$1 is the snap name"
   },
   "suggestedTokenSymbol": {
     "message": "Símbolo de cotización sugerido:"
@@ -5534,6 +5698,10 @@
   "thisCollection": {
     "message": "esta colección"
   },
+  "threeMonthsAbbreviation": {
+    "message": "3 m",
+    "description": "Shortened form of '3 months'"
+  },
   "time": {
     "message": "Tiempo"
   },
@@ -5613,6 +5781,9 @@
   "tokenContractAddress": {
     "message": "Dirección de contrato de token"
   },
+  "tokenDecimal": {
+    "message": "Decimales del token"
+  },
   "tokenDecimalFetchFailed": {
     "message": "Se requiere decimal del token. Encuéntrelo en: $1"
   },
@@ -5661,6 +5832,9 @@
   },
   "total": {
     "message": "Total"
+  },
+  "totalVolume": {
+    "message": "Volúmen total"
   },
   "transaction": {
     "message": "transacción"
@@ -5766,6 +5940,10 @@
   },
   "transferFrom": {
     "message": "Transferir desde"
+  },
+  "trillionAbbreviation": {
+    "message": "b",
+    "description": "Shortened form of 'trillion'"
   },
   "troubleConnectingToLedgerU2FOnFirefox": {
     "message": "Tenemos problemas para conectarnos con su Ledger. $1",
@@ -6139,6 +6317,12 @@
   },
   "yourAccounts": {
     "message": "Sus cuentas"
+  },
+  "yourActivity": {
+    "message": "Su actividad"
+  },
+  "yourBalance": {
+    "message": "Su saldo"
   },
   "yourFundsMayBeAtRisk": {
     "message": "Sus fondos podrían estar en riesgo"
